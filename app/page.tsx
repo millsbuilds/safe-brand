@@ -88,7 +88,7 @@ function Nav() {
           }}
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         >
-          Safe<span style={{ color: C.peach }}>™</span>
+          SafeBrand<span style={{ color: C.peach }}>™</span>
         </div>
 
         {isMobile ? (
@@ -218,7 +218,7 @@ function Hero() {
             margin: "0 auto 44px",
           }}
         >
-          Precision nutrition from Health Science Nutritionals, PBC — formulated by a physician who helped crack the genetic code.
+          Precision nutrition from Health Science Nutritionals, PBC — formulated by a physician practicing Psychoneuroendocrinology, board certified in Internal Medicine, Endocrinology, and Psychiatry.
         </p>
 
         <button
@@ -367,17 +367,17 @@ function Products() {
           }}
         >
           <ProductCard
-            name="Safe Salt™"
+            name="SafeSalt™"
             description="Precision electrolyte seasoning engineered around your Na:K ratio. Not table salt. Not a supplement. A new category."
             href="safesalt.health"
           />
           <ProductCard
-            name="Safe Supplements™"
+            name="SafeSupplements™"
             description="Targeted mineral protocols formulated by a physician. Each product built around a clinical insight, not a marketing brief."
             href="safesupplements.health"
           />
           <ProductCard
-            name="Safe Hydrate™"
+            name="SafeHydrate™"
             description="Performance hydration built on the science of sodium and potassium balance. For athletes and the rigorously health-conscious."
             href="safehydrate.health"
           />
@@ -424,7 +424,7 @@ function Science() {
             marginBottom: 40,
           }}
         >
-          Dr. R.S. Isaac Gardner, MD
+          Dr. Robert S. 'Isaac' Gardner, MD
         </h2>
 
         <div
@@ -445,10 +445,9 @@ function Science() {
           }}
         >
           {[
-            "Board Certified in Internal Medicine",
+            "Board Certified in Internal Medicine, Endocrinology, and Psychiatry",
             "Trained at NYU School of Medicine, Stanford, NIH & Washington University",
-            "53 years of clinical practice",
-            "Published in the Proceedings of the National Academy of Sciences, 1963",
+            "Worked in the labs of two Nobel Laureates",
           ].map((item) => (
             <div
               key={item}
@@ -488,7 +487,7 @@ function Science() {
             textAlign: "left",
           }}
         >
-          In Severo Ochoa&apos;s laboratory, Dr. Gardner contributed to cracking the genetic code — work that would earn Ochoa the Nobel Prize. That same rigor defines every product in the Safe™ line.
+          Dr. Gardner&apos;s work in Severo Ochoa&apos;s laboratory established the missing link — nearly 40% of the genetic code. That same foundational rigor defines every product in the SafeBrand™ line.
         </blockquote>
       </div>
     </section>
@@ -619,7 +618,7 @@ function Footer() {
               color: C.white,
             }}
           >
-            Safe<span style={{ color: C.peach }}>™</span>
+            SafeBrand<span style={{ color: C.peach }}>™</span>
           </div>
 
           {/* Links */}
@@ -668,7 +667,7 @@ function Footer() {
               maxWidth: 720,
             }}
           >
-            © 2026 Health Science Nutritionals, PBC. Safe Salt™, Safe Supplements™, and Safe Hydrate™ are trademarks of Health Science Nutritionals, PBC.
+            © 2026 Health Science Nutritionals, PBC. SafeSalt™, SafeSupplements™, and SafeHydrate™ are trademarks of Health Science Nutritionals, PBC.
           </p>
         </div>
       </div>
