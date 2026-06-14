@@ -393,7 +393,7 @@ function Products() {
             name="SafeHydrate™"
             description="Performance hydration built on the science of sodium and potassium balance. For athletes and the rigorously health-conscious."
             href="safehydrate.health"
-            imagePath="/images/hand-water.png"
+            imagePath="/images/hand-hydrate.png"
           />
         </div>
       </div>
