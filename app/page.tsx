@@ -496,6 +496,26 @@ function AssessmentAnnouncement() {
   return (
     <section style={{ background: "#1B2E4A", padding: "96px 32px", fontFamily: '"Inter", system-ui, sans-serif', textAlign: "center" }}>
       <div style={{ maxWidth: 680, margin: "0 auto" }}>
+        {/* App icon lockup */}
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginBottom: 36 }}>
+          <div style={{
+            width: 80,
+            height: 80,
+            borderRadius: 20,
+            background: "#1B2E4A",
+            border: "2px solid #E89B7C",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            marginBottom: 10,
+          }}>
+            <span style={{ fontSize: 24, fontWeight: 700, color: "#FFFFFF", fontFamily: '"Inter", system-ui, sans-serif', letterSpacing: "-0.02em" }}>NaK</span>
+          </div>
+          <p style={{ fontSize: 11, fontWeight: 500, color: "#E89B7C", fontFamily: '"Inter", system-ui, sans-serif', letterSpacing: "0.06em", margin: 0 }}>
+            Precision Mineral Assessment
+          </p>
+        </div>
+
         <div style={{ height: 200, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 32 }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -510,7 +530,7 @@ function AssessmentAnnouncement() {
         </p>
 
         <h2 style={{ fontSize: "clamp(26px, 4vw, 42px)", fontWeight: 700, color: "#FFFFFF", letterSpacing: "-0.025em", lineHeight: 1.15, marginBottom: 20 }}>
-          The NaK™ Precision Mineral Assessment
+          The NaK Precision Mineral Assessment
         </h2>
 
         <p style={{ fontSize: "clamp(15px, 2vw, 17px)", fontWeight: 300, color: "rgba(255,255,255,0.7)", lineHeight: 1.72, marginBottom: 44, maxWidth: 600, margin: "0 auto 44px" }}>
