@@ -499,24 +499,30 @@ function AssessmentAnnouncement() {
         {/* App icon lockup */}
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginBottom: 36 }}>
           <div style={{
-            width: 80,
-            height: 80,
-            borderRadius: 20,
+            width: 120,
+            height: 120,
+            borderRadius: 24,
             background: "#1B2E4A",
             border: "2px solid #E89B7C",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginBottom: 10,
+            overflow: "hidden",
+            marginBottom: 12,
           }}>
-            <span style={{ fontSize: 24, fontWeight: 700, color: "#FFFFFF", fontFamily: '"Inter", system-ui, sans-serif', letterSpacing: "-0.02em" }}>NaK</span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/hand-vial.png"
+              alt="NaK app icon"
+              style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: 22 }}
+            />
           </div>
+          <p style={{ fontSize: 18, fontWeight: 700, color: "#FFFFFF", fontFamily: '"Inter", system-ui, sans-serif', letterSpacing: "-0.02em", margin: "0 0 6px" }}>
+            NaK
+          </p>
           <p style={{ fontSize: 11, fontWeight: 500, color: "#E89B7C", fontFamily: '"Inter", system-ui, sans-serif', letterSpacing: "0.06em", margin: 0 }}>
             Precision Mineral Assessment
           </p>
         </div>
 
-        <div style={{ height: 200, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 32 }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: 200, marginBottom: 32 }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/hand-testtube.png"
