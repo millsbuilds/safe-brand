@@ -301,7 +301,7 @@ function ProductCard({
           alignItems: "center",
           justifyContent: "center",
           marginBottom: 4,
-          background: "#FAFAF9",
+          background: "#1B2E4A",
           borderRadius: 2,
           overflow: "hidden",
         }}
