@@ -482,6 +482,96 @@ function Science() {
   );
 }
 
+// ─── ASSESSMENT ANNOUNCEMENT ──────────────────────────────────────────────────
+
+function AssessmentAnnouncement() {
+  const [email, setEmail] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email.trim()) setSubmitted(true);
+  };
+
+  return (
+    <section style={{ background: "#1B2E4A", padding: "96px 32px", fontFamily: '"Inter", system-ui, sans-serif', textAlign: "center" }}>
+      <div style={{ maxWidth: 680, margin: "0 auto" }}>
+        <div style={{ height: 200, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 32 }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/hand-testtube.png"
+            alt="NaK Precision Mineral Assessment"
+            style={{ height: "100%", objectFit: "contain" }}
+          />
+        </div>
+
+        <p style={{ fontSize: 11, fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase", color: "#7AA8C9", marginBottom: 16 }}>
+          Coming Soon
+        </p>
+
+        <h2 style={{ fontSize: "clamp(26px, 4vw, 42px)", fontWeight: 700, color: "#FFFFFF", letterSpacing: "-0.025em", lineHeight: 1.15, marginBottom: 20 }}>
+          The NaK™ Precision Mineral Assessment
+        </h2>
+
+        <p style={{ fontSize: "clamp(15px, 2vw, 17px)", fontWeight: 300, color: "rgba(255,255,255,0.7)", lineHeight: 1.72, marginBottom: 44, maxWidth: 600, margin: "0 auto 44px" }}>
+          The first diagnostic platform to measure your Na:K ratio against your actual biology — integrating with Apple Health, activity data, and physician-validated benchmarks to deliver a personalized mineral protocol. Not a quiz. A clinical-grade assessment in your pocket.
+        </p>
+
+        {submitted ? (
+          <p style={{ fontSize: 15, fontWeight: 500, color: "rgba(255,255,255,0.85)" }}>
+            You&apos;re on the list. We&apos;ll be in touch.
+          </p>
+        ) : (
+          <>
+            <form
+              onSubmit={handleSubmit}
+              style={{ display: "flex", gap: 0, maxWidth: 480, margin: "0 auto 12px", borderRadius: 3, overflow: "hidden", border: "1px solid rgba(255,255,255,0.15)" }}
+            >
+              <input
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="your@email.com"
+                style={{
+                  flex: 1,
+                  padding: "13px 18px",
+                  fontSize: 15,
+                  border: "none",
+                  outline: "none",
+                  background: "rgba(255,255,255,0.07)",
+                  color: "#FFFFFF",
+                  fontFamily: '"Inter", system-ui, sans-serif',
+                }}
+              />
+              <button
+                type="submit"
+                style={{
+                  background: "#E89B7C",
+                  color: "#1B2E4A",
+                  border: "none",
+                  padding: "13px 22px",
+                  fontSize: 14,
+                  fontWeight: 600,
+                  cursor: "pointer",
+                  fontFamily: '"Inter", system-ui, sans-serif',
+                  whiteSpace: "nowrap",
+                  borderRadius: "0 3px 3px 0",
+                }}
+              >
+                Join Early Access →
+              </button>
+            </form>
+            <p style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", margin: 0 }}>
+              No marketing emails. One confirmation. We&apos;ll reach out when it&apos;s ready.
+            </p>
+          </>
+        )}
+      </div>
+    </section>
+  );
+}
+
 // ─── PARTNERS SECTION ─────────────────────────────────────────────────────────
 
 function PartnerCard({ title, body }: { title: string; body: string }) {
@@ -634,6 +724,7 @@ export default function Home() {
         <Hero />
         <Products />
         <Science />
+        <AssessmentAnnouncement />
         <Partners />
       </main>
       <Footer />
