@@ -8,8 +8,13 @@ const C = {
   blush: "#FAEBDE",
   sky: "#7AA8C9",
   white: "#FFFFFF",
-  cream: "#FDFAF7",
-  navyMuted: "rgba(27,46,74,0.7)",
+  navyMuted: "rgba(27,46,74,0.65)",
+  navyLight: "rgba(27,46,74,0.4)",
+  border: "#E8E4DE",
+};
+
+const F = {
+  base: '"Inter", system-ui, sans-serif',
 };
 
 // ─── NAV ──────────────────────────────────────────────────────────────────────
@@ -37,128 +42,140 @@ function Nav() {
   };
 
   const linkStyle: React.CSSProperties = {
-    color: "rgba(255,255,255,0.82)",
-    fontSize: 14,
+    color: "rgba(255,255,255,0.8)",
+    fontSize: 13,
     fontWeight: 500,
-    letterSpacing: "0.04em",
-    textDecoration: "none",
-    fontFamily: "Inter, sans-serif",
+    letterSpacing: "0.05em",
+    textTransform: "uppercase",
+    fontFamily: F.base,
     background: "none",
     border: "none",
     cursor: "pointer",
     transition: "color 0.15s",
     padding: 0,
+    textDecoration: "none",
   };
 
   return (
-    <nav
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 100,
-        background: C.navy,
-        borderBottom: scrolled ? "1px solid rgba(255,255,255,0.08)" : "1px solid transparent",
-        transition: "border-color 0.2s",
-        fontFamily: "Inter, sans-serif",
-      }}
-    >
-      <div
+    <header style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, fontFamily: F.base }}>
+      {/* Main nav bar */}
+      <nav
         style={{
-          maxWidth: 1200,
-          margin: "0 auto",
-          padding: "0 32px",
-          height: 68,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
+          background: C.navy,
+          borderBottom: scrolled ? "1px solid rgba(255,255,255,0.08)" : "1px solid transparent",
+          transition: "border-color 0.2s",
         }}
       >
-        {/* Logo */}
         <div
           style={{
-            fontFamily: "\"Playfair Display\", Georgia, serif",
-            fontSize: 26,
-            fontWeight: 700,
-            color: C.white,
-            letterSpacing: "-0.01em",
-            cursor: "pointer",
-            userSelect: "none",
+            maxWidth: 1200,
+            margin: "0 auto",
+            padding: "0 32px",
+            height: 64,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
           }}
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         >
-          SafeBrand<span style={{ color: C.peach }}>™</span>
+          {/* Logo */}
+          <div
+            style={{
+              fontSize: 22,
+              fontWeight: 700,
+              color: C.white,
+              letterSpacing: "-0.02em",
+              cursor: "pointer",
+              userSelect: "none",
+              fontFamily: F.base,
+            }}
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          >
+            SafeBrand<span style={{ color: C.peach }}>™</span>
+          </div>
+
+          {isMobile ? (
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              style={{ background: "none", border: "none", cursor: "pointer", padding: 8, display: "flex", flexDirection: "column", gap: 5 }}
+              aria-label="Menu"
+            >
+              {[0, 1, 2].map((i) => (
+                <span
+                  key={i}
+                  style={{
+                    display: "block",
+                    width: 22,
+                    height: 2,
+                    background: C.white,
+                    transition: "all 0.2s",
+                    opacity: menuOpen && i === 1 ? 0 : 1,
+                    transform: menuOpen && i === 0 ? "translateY(7px) rotate(45deg)" : menuOpen && i === 2 ? "translateY(-7px) rotate(-45deg)" : "none",
+                  }}
+                />
+              ))}
+            </button>
+          ) : (
+            <div style={{ display: "flex", alignItems: "center", gap: 36 }}>
+              {[
+                { label: "The Assessment", id: "assessment" },
+                { label: "Our Products", id: "products" },
+                { label: "The Science", id: "science" },
+                { label: "About HSN", id: "about" },
+              ].map(({ label, id }) => (
+                <button
+                  key={id}
+                  onClick={() => scrollTo(id)}
+                  style={linkStyle}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = C.peach)}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.8)")}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
 
-        {isMobile ? (
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            style={{ background: "none", border: "none", cursor: "pointer", padding: 8, display: "flex", flexDirection: "column", gap: 5 }}
-            aria-label="Menu"
+        {/* Mobile drawer */}
+        {isMobile && menuOpen && (
+          <div
+            style={{
+              background: C.navy,
+              borderTop: "1px solid rgba(255,255,255,0.1)",
+              padding: "20px 32px 28px",
+              display: "flex",
+              flexDirection: "column",
+              gap: 20,
+            }}
           >
-            {[0, 1, 2].map((i) => (
-              <span
-                key={i}
-                style={{
-                  display: "block",
-                  width: 22,
-                  height: 2,
-                  background: C.white,
-                  transition: "all 0.2s",
-                  opacity: menuOpen && i === 1 ? 0 : 1,
-                  transform: menuOpen && i === 0 ? "translateY(7px) rotate(45deg)" : menuOpen && i === 2 ? "translateY(-7px) rotate(-45deg)" : "none",
-                }}
-              />
-            ))}
-          </button>
-        ) : (
-          <div style={{ display: "flex", alignItems: "center", gap: 36 }}>
             {[
               { label: "The Assessment", id: "assessment" },
               { label: "Our Products", id: "products" },
               { label: "The Science", id: "science" },
               { label: "About HSN", id: "about" },
             ].map(({ label, id }) => (
-              <button
-                key={id}
-                onClick={() => scrollTo(id)}
-                style={linkStyle}
-                onMouseEnter={(e) => (e.currentTarget.style.color = C.peach)}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.82)")}
-              >
+              <button key={id} onClick={() => scrollTo(id)} style={{ ...linkStyle, fontSize: 15, color: C.white, textAlign: "left", textTransform: "none", letterSpacing: "0.02em" }}>
                 {label}
               </button>
             ))}
           </div>
         )}
-      </div>
+      </nav>
 
-      {/* Mobile drawer */}
-      {isMobile && menuOpen && (
-        <div
-          style={{
-            background: C.navy,
-            borderTop: "1px solid rgba(255,255,255,0.1)",
-            padding: "20px 32px 28px",
-            display: "flex",
-            flexDirection: "column",
-            gap: 20,
-          }}
-        >
-          {[
-            { label: "The Assessment", id: "assessment" },
-            { label: "Our Products", id: "products" },
-            { label: "The Science", id: "science" },
-            { label: "About HSN", id: "about" },
-          ].map(({ label, id }) => (
-            <button key={id} onClick={() => scrollTo(id)} style={{ ...linkStyle, fontSize: 16, color: C.white, textAlign: "left" }}>
-              {label}
-            </button>
-          ))}
-        </div>
-      )}
-    </nav>
+      {/* Sub-banner */}
+      <div
+        style={{
+          background: C.navy,
+          borderBottom: "1px solid rgba(255,255,255,0.08)",
+          textAlign: "center",
+          padding: "6px 16px",
+        }}
+      >
+        <p style={{ margin: 0, fontSize: 11, fontWeight: 400, color: C.peach, letterSpacing: "0.06em", fontFamily: F.base }}>
+          A consumer brand of Health Science Nutritionals, PBC
+        </p>
+      </div>
+    </header>
   );
 }
 
@@ -170,18 +187,18 @@ function Hero() {
   return (
     <section
       style={{
-        background: C.blush,
-        paddingTop: 140,
+        background: C.white,
+        paddingTop: 148,
         paddingBottom: 112,
         paddingLeft: 32,
         paddingRight: 32,
         textAlign: "center",
+        fontFamily: F.base,
       }}
     >
-      <div style={{ maxWidth: 880, margin: "0 auto" }}>
+      <div style={{ maxWidth: 820, margin: "0 auto" }}>
         <p
           style={{
-            fontFamily: "Inter, sans-serif",
             fontSize: 11,
             fontWeight: 600,
             letterSpacing: "0.18em",
@@ -195,51 +212,49 @@ function Hero() {
 
         <h1
           style={{
-            fontFamily: "\"Playfair Display\", Georgia, serif",
-            fontSize: "clamp(34px, 6vw, 64px)",
+            fontSize: "clamp(32px, 5.5vw, 60px)",
             fontWeight: 700,
             color: C.navy,
-            lineHeight: 1.15,
-            letterSpacing: "-0.01em",
+            lineHeight: 1.12,
+            letterSpacing: "-0.03em",
             marginBottom: 28,
           }}
         >
-          The only seasoning engineered for your Na:K protocol.
+          Science-first nutrition. Built for people who demand proof.
         </h1>
 
         <p
           style={{
-            fontFamily: "Inter, sans-serif",
             fontSize: "clamp(16px, 2vw, 19px)",
-            fontWeight: 400,
+            fontWeight: 300,
             color: C.navyMuted,
-            lineHeight: 1.7,
-            maxWidth: 640,
+            lineHeight: 1.72,
+            maxWidth: 660,
             margin: "0 auto 44px",
           }}
         >
-          Precision nutrition from Health Science Nutritionals, PBC — formulated by a physician practicing Psychoneuroendocrinology, board certified in Internal Medicine, Endocrinology, and Psychiatry.
+          Health Science Nutritionals, PBC develops physician-formulated products for patients, practitioners, and health systems who won&apos;t accept less than clinical-grade.
         </p>
 
         <button
-          onClick={() => scrollTo("assessment")}
+          onClick={() => scrollTo("science")}
           style={{
             background: C.navy,
             color: C.white,
             border: "none",
-            borderRadius: 4,
-            padding: "16px 36px",
-            fontSize: 15,
+            borderRadius: 3,
+            padding: "15px 34px",
+            fontSize: 14,
             fontWeight: 600,
-            letterSpacing: "0.02em",
-            fontFamily: "Inter, sans-serif",
+            letterSpacing: "0.03em",
+            fontFamily: F.base,
             cursor: "pointer",
             transition: "opacity 0.15s",
           }}
-          onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.88")}
+          onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.85")}
           onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
         >
-          Take The Precision Mineral Assessment →
+          Explore the Science →
         </button>
       </div>
     </section>
@@ -252,10 +267,12 @@ function ProductCard({
   name,
   description,
   href,
+  imagePath,
 }: {
   name: string;
   description: string;
   href: string;
+  imagePath: string;
 }) {
   const [hovered, setHovered] = useState(false);
 
@@ -265,34 +282,55 @@ function ProductCard({
       onMouseLeave={() => setHovered(false)}
       style={{
         background: C.white,
-        border: `1px solid #E8E4DE`,
+        border: `1px solid ${C.border}`,
         borderTop: `3px solid ${C.peach}`,
-        borderRadius: 4,
-        padding: "36px 32px",
+        borderRadius: 3,
+        padding: "32px 28px",
         display: "flex",
         flexDirection: "column",
-        gap: 16,
+        gap: 14,
         transition: "box-shadow 0.2s",
-        boxShadow: hovered ? "0 8px 32px rgba(27,46,74,0.1)" : "0 2px 8px rgba(27,46,74,0.04)",
+        boxShadow: hovered ? "0 8px 32px rgba(27,46,74,0.09)" : "0 1px 4px rgba(27,46,74,0.04)",
+        fontFamily: F.base,
       }}
     >
+      <div
+        style={{
+          height: 160,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          marginBottom: 4,
+          background: "#FAFAF9",
+          borderRadius: 2,
+          overflow: "hidden",
+        }}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={imagePath}
+          alt={name}
+          style={{ height: "100%", width: "100%", objectFit: "contain" }}
+        />
+      </div>
       <h3
         style={{
-          fontFamily: "\"Playfair Display\", Georgia, serif",
-          fontSize: 24,
-          fontWeight: 600,
+          fontSize: 20,
+          fontWeight: 700,
           color: C.navy,
-          letterSpacing: "-0.01em",
+          letterSpacing: "-0.02em",
+          margin: 0,
         }}
       >
         {name}
       </h3>
       <p
         style={{
-          fontFamily: "Inter, sans-serif",
           fontSize: 15,
+          fontWeight: 300,
           color: C.navyMuted,
-          lineHeight: 1.65,
+          lineHeight: 1.68,
+          margin: 0,
           flex: 1,
         }}
       >
@@ -303,12 +341,12 @@ function ProductCard({
         target="_blank"
         rel="noopener noreferrer"
         style={{
-          fontFamily: "Inter, sans-serif",
-          fontSize: 14,
+          fontSize: 13,
           fontWeight: 600,
           color: C.navy,
           textDecoration: "none",
-          letterSpacing: "0.02em",
+          letterSpacing: "0.03em",
+          marginTop: 4,
         }}
       >
         Learn More →
@@ -327,59 +365,35 @@ function Products() {
   }, []);
 
   return (
-    <section
-      id="products"
-      style={{ background: C.white, padding: "96px 32px" }}
-    >
+    <section id="products" style={{ background: C.white, padding: "96px 32px", fontFamily: F.base }}>
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-        <div style={{ textAlign: "center", marginBottom: 60 }}>
-          <p
-            style={{
-              fontFamily: "Inter, sans-serif",
-              fontSize: 11,
-              fontWeight: 600,
-              letterSpacing: "0.18em",
-              textTransform: "uppercase",
-              color: C.peach,
-              marginBottom: 16,
-            }}
-          >
+        <div style={{ textAlign: "center", marginBottom: 64 }}>
+          <p style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.18em", textTransform: "uppercase", color: C.peach, marginBottom: 16 }}>
             Our Products
           </p>
-          <h2
-            style={{
-              fontFamily: "\"Playfair Display\", Georgia, serif",
-              fontSize: "clamp(28px, 4vw, 44px)",
-              fontWeight: 700,
-              color: C.navy,
-              letterSpacing: "-0.01em",
-            }}
-          >
+          <h2 style={{ fontSize: "clamp(26px, 4vw, 42px)", fontWeight: 700, color: C.navy, letterSpacing: "-0.025em" }}>
             Precision nutrition. Every protocol.
           </h2>
         </div>
 
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)",
-            gap: 28,
-          }}
-        >
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: 28 }}>
           <ProductCard
             name="SafeSalt™"
             description="Precision electrolyte seasoning engineered around your Na:K ratio. Not table salt. Not a supplement. A new category."
             href="safesalt.health"
+            imagePath="/images/hand-salt.png"
           />
           <ProductCard
             name="SafeSupplements™"
             description="Targeted mineral protocols formulated by a physician. Each product built around a clinical insight, not a marketing brief."
             href="safesupplements.health"
+            imagePath="/images/hand-supplement.png"
           />
           <ProductCard
             name="SafeHydrate™"
             description="Performance hydration built on the science of sodium and potassium balance. For athletes and the rigorously health-conscious."
             href="safehydrate.health"
+            imagePath="/images/hand-water.png"
           />
         </div>
       </div>
@@ -387,61 +401,37 @@ function Products() {
   );
 }
 
-// ─── FOUNDER BLOCK ────────────────────────────────────────────────────────────
+// ─── SCIENCE / FOUNDER BLOCK ──────────────────────────────────────────────────
 
 function Science() {
   return (
-    <section
-      id="science"
-      style={{
-        background: C.navy,
-        padding: "96px 32px",
-      }}
-    >
+    <section id="science" style={{ background: C.navy, padding: "96px 32px", fontFamily: F.base }}>
       <div style={{ maxWidth: 860, margin: "0 auto", textAlign: "center" }}>
-        <p
-          style={{
-            fontFamily: "Inter, sans-serif",
-            fontSize: 11,
-            fontWeight: 600,
-            letterSpacing: "0.18em",
-            textTransform: "uppercase",
-            color: C.sky,
-            marginBottom: 20,
-          }}
-        >
+        <p style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.18em", textTransform: "uppercase", color: C.sky, marginBottom: 20 }}>
           The Science Behind the Products
         </p>
 
         <h2
           style={{
-            fontFamily: "\"Playfair Display\", Georgia, serif",
             fontSize: "clamp(28px, 4vw, 46px)",
             fontWeight: 700,
             color: C.white,
-            letterSpacing: "-0.01em",
-            lineHeight: 1.2,
+            letterSpacing: "-0.025em",
+            lineHeight: 1.15,
             marginBottom: 40,
           }}
         >
-          Dr. Robert S. 'Isaac' Gardner, MD
+          Dr. Robert S. &lsquo;Isaac&rsquo; Gardner, MD
         </h2>
 
-        <div
-          style={{
-            width: 48,
-            height: 2,
-            background: C.peach,
-            margin: "0 auto 40px",
-          }}
-        />
+        <div style={{ width: 48, height: 2, background: C.peach, margin: "0 auto 40px" }} />
 
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-            gap: 24,
-            marginBottom: 48,
+            gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+            gap: 20,
+            marginBottom: 52,
           }}
         >
           {[
@@ -454,117 +444,111 @@ function Science() {
               style={{
                 background: "rgba(255,255,255,0.06)",
                 border: "1px solid rgba(255,255,255,0.1)",
-                borderRadius: 4,
+                borderRadius: 3,
                 padding: "24px 20px",
               }}
             >
-              <p
-                style={{
-                  fontFamily: "Inter, sans-serif",
-                  fontSize: 14,
-                  color: "rgba(255,255,255,0.85)",
-                  lineHeight: 1.6,
-                  fontWeight: 400,
-                }}
-              >
+              <p style={{ fontSize: 14, fontWeight: 400, color: "rgba(255,255,255,0.85)", lineHeight: 1.65, margin: 0 }}>
                 {item}
               </p>
             </div>
           ))}
         </div>
 
-        <blockquote
+        <div
           style={{
-            fontFamily: "\"Playfair Display\", Georgia, serif",
-            fontSize: "clamp(18px, 2.5vw, 24px)",
-            fontStyle: "italic",
-            color: "rgba(255,255,255,0.9)",
-            lineHeight: 1.65,
-            maxWidth: 720,
-            margin: "0 auto",
             borderLeft: `3px solid ${C.peach}`,
             paddingLeft: 28,
             textAlign: "left",
+            maxWidth: 720,
+            margin: "0 auto",
           }}
         >
-          Dr. Gardner&apos;s work in Severo Ochoa&apos;s laboratory established the missing link — nearly 40% of the genetic code. That same foundational rigor defines every product in the SafeBrand™ line.
-        </blockquote>
+          <p
+            style={{
+              fontSize: "clamp(17px, 2.5vw, 22px)",
+              fontWeight: 300,
+              fontStyle: "italic",
+              color: "rgba(255,255,255,0.88)",
+              lineHeight: 1.68,
+              margin: 0,
+            }}
+          >
+            In Severo Ochoa&apos;s laboratory, Dr. Gardner spent one summer discovering nearly 40% of the genetic code. That same precision defines every SafeBrand™ formulation.
+          </p>
+        </div>
       </div>
     </section>
   );
 }
 
-// ─── ASSESSMENT CTA ───────────────────────────────────────────────────────────
+// ─── PARTNERS SECTION ─────────────────────────────────────────────────────────
 
-function AssessmentCTA() {
+function PartnerCard({ title, body }: { title: string; body: string }) {
+  const [hovered, setHovered] = useState(false);
   return (
-    <section
-      id="assessment"
+    <div
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
       style={{
-        background: C.blush,
-        padding: "96px 32px",
-        textAlign: "center",
+        background: C.white,
+        border: `1px solid ${C.border}`,
+        borderTop: `3px solid ${C.peach}`,
+        borderRadius: 3,
+        padding: "32px 28px",
+        transition: "box-shadow 0.2s",
+        boxShadow: hovered ? "0 8px 28px rgba(27,46,74,0.09)" : "0 1px 4px rgba(27,46,74,0.04)",
+        fontFamily: F.base,
       }}
     >
-      <div style={{ maxWidth: 720, margin: "0 auto" }}>
-        <p
-          style={{
-            fontFamily: "Inter, sans-serif",
-            fontSize: 11,
-            fontWeight: 600,
-            letterSpacing: "0.18em",
-            textTransform: "uppercase",
-            color: C.peach,
-            marginBottom: 20,
-          }}
-        >
-          Precision Mineral Assessment
-        </p>
-        <h2
-          style={{
-            fontFamily: "\"Playfair Display\", Georgia, serif",
-            fontSize: "clamp(28px, 4.5vw, 50px)",
-            fontWeight: 700,
-            color: C.navy,
-            letterSpacing: "-0.01em",
-            lineHeight: 1.2,
-            marginBottom: 24,
-          }}
-        >
-          Know your minerals. Know your protocol.
-        </h2>
-        <p
-          style={{
-            fontFamily: "Inter, sans-serif",
-            fontSize: "clamp(15px, 2vw, 18px)",
-            color: C.navyMuted,
-            lineHeight: 1.7,
-            marginBottom: 44,
-            maxWidth: 580,
-            margin: "0 auto 44px",
-          }}
-        >
-          The Precision Mineral Assessment tells you exactly where your Na:K ratio stands — and what to do about it.
-        </p>
-        <button
-          style={{
-            background: C.navy,
-            color: C.white,
-            border: "none",
-            borderRadius: 4,
-            padding: "16px 36px",
-            fontSize: 15,
-            fontWeight: 600,
-            letterSpacing: "0.02em",
-            fontFamily: "Inter, sans-serif",
-            cursor: "pointer",
-            transition: "opacity 0.15s",
-          }}
-          onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.88")}
-          onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
-        >
-          Start The Assessment →
-        </button>
+      <h3 style={{ fontSize: 18, fontWeight: 700, color: C.navy, letterSpacing: "-0.02em", marginBottom: 12 }}>
+        {title}
+      </h3>
+      <p style={{ fontSize: 15, fontWeight: 300, color: C.navyMuted, lineHeight: 1.68, margin: 0 }}>
+        {body}
+      </p>
+    </div>
+  );
+}
+
+function Partners() {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  return (
+    <section id="assessment" style={{ background: C.blush, padding: "96px 32px", fontFamily: F.base }}>
+      <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+        <div style={{ textAlign: "center", marginBottom: 64 }}>
+          <p style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.18em", textTransform: "uppercase", color: C.peach, marginBottom: 16 }}>
+            Practitioners &amp; Partners
+          </p>
+          <h2 style={{ fontSize: "clamp(26px, 4vw, 44px)", fontWeight: 700, color: C.navy, letterSpacing: "-0.025em", lineHeight: 1.2, marginBottom: 20 }}>
+            Built for practitioners and partners.
+          </h2>
+          <p style={{ fontSize: "clamp(15px, 2vw, 18px)", fontWeight: 300, color: C.navyMuted, lineHeight: 1.72, maxWidth: 600, margin: "0 auto" }}>
+            We work with physicians, dietitians, health systems, and institutional partners who share our commitment to evidence-based nutrition.
+          </p>
+        </div>
+
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: 28 }}>
+          <PartnerCard
+            title="Physicians &amp; Dietitians"
+            body="Clinical formulations you can recommend with confidence."
+          />
+          <PartnerCard
+            title="Health Systems"
+            body="Institutional partnerships for patient nutrition programs."
+          />
+          <PartnerCard
+            title="Investors"
+            body="A science-first PBC with a physician founder and a defensible product ecosystem."
+          />
+        </div>
       </div>
     </section>
   );
@@ -593,9 +577,9 @@ function Footer() {
       id="about"
       style={{
         background: C.navy,
-        borderTop: "1px solid rgba(255,255,255,0.08)",
+        borderTop: "1px solid rgba(255,255,255,0.07)",
         padding: "56px 32px 40px",
-        fontFamily: "Inter, sans-serif",
+        fontFamily: F.base,
       }}
     >
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
@@ -609,43 +593,20 @@ function Footer() {
             marginBottom: 40,
           }}
         >
-          {/* Logo */}
-          <div
-            style={{
-              fontFamily: "\"Playfair Display\", Georgia, serif",
-              fontSize: 24,
-              fontWeight: 700,
-              color: C.white,
-            }}
-          >
+          <div style={{ fontSize: 22, fontWeight: 700, color: C.white, letterSpacing: "-0.02em" }}>
             SafeBrand<span style={{ color: C.peach }}>™</span>
           </div>
 
-          {/* Links */}
-          <div
-            style={{
-              display: "flex",
-              flexDirection: isMobile ? "column" : "row",
-              gap: isMobile ? 16 : 32,
-              flexWrap: "wrap",
-            }}
-          >
+          <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", gap: isMobile ? 14 : 28, flexWrap: "wrap" }}>
             {links.map(({ label, href }) => (
               <a
                 key={href}
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{
-                  color: "rgba(255,255,255,0.6)",
-                  fontSize: 13,
-                  textDecoration: "none",
-                  fontWeight: 400,
-                  letterSpacing: "0.01em",
-                  transition: "color 0.15s",
-                }}
+                style={{ color: "rgba(255,255,255,0.55)", fontSize: 13, fontWeight: 400, textDecoration: "none", transition: "color 0.15s" }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = C.peach)}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.6)")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.55)")}
               >
                 {label}
               </a>
@@ -653,21 +614,9 @@ function Footer() {
           </div>
         </div>
 
-        <div
-          style={{
-            borderTop: "1px solid rgba(255,255,255,0.08)",
-            paddingTop: 24,
-          }}
-        >
-          <p
-            style={{
-              fontSize: 12,
-              color: "rgba(255,255,255,0.4)",
-              lineHeight: 1.7,
-              maxWidth: 720,
-            }}
-          >
-            © 2026 Health Science Nutritionals, PBC. SafeSalt™, SafeSupplements™, and SafeHydrate™ are trademarks of Health Science Nutritionals, PBC.
+        <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: 24 }}>
+          <p style={{ fontSize: 12, fontWeight: 300, color: "rgba(255,255,255,0.38)", lineHeight: 1.75, maxWidth: 800 }}>
+            SafeBrand™ is a consumer brand of Health Science Nutritionals, PBC. SafeSalt™, SafeSupplements™, and SafeHydrate™ are trademarks of Health Science Nutritionals, PBC. © 2026 Health Science Nutritionals, PBC.
           </p>
         </div>
       </div>
@@ -685,7 +634,7 @@ export default function Home() {
         <Hero />
         <Products />
         <Science />
-        <AssessmentCTA />
+        <Partners />
       </main>
       <Footer />
     </>
