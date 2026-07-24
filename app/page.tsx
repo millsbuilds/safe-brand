@@ -301,16 +301,14 @@ function ProductCard({
           alignItems: "center",
           justifyContent: "center",
           marginBottom: 4,
-          background: "#1B2E4A",
-          borderRadius: 2,
-          overflow: "hidden",
+          background: "transparent",
         }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={imagePath}
           alt={name}
-          style={{ height: "100%", width: "100%", objectFit: "contain" }}
+          style={{ height: "100%", width: "100%", objectFit: "contain", mixBlendMode: "multiply" }}
         />
       </div>
       <h3
@@ -532,16 +530,20 @@ function AssessmentAnnouncement() {
         </div>
 
         <p style={{ fontSize: 11, fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase", color: "#7AA8C9", marginBottom: 16 }}>
-          Coming Soon
+          Available Now
         </p>
 
         <h2 style={{ fontSize: "clamp(26px, 4vw, 42px)", fontWeight: 700, color: "#FFFFFF", letterSpacing: "-0.025em", lineHeight: 1.15, marginBottom: 20 }}>
           The NaK Precision Mineral Assessment
         </h2>
 
-        <p style={{ fontSize: "clamp(15px, 2vw, 17px)", fontWeight: 300, color: "rgba(255,255,255,0.7)", lineHeight: 1.72, marginBottom: 44, maxWidth: 600, margin: "0 auto 44px" }}>
+        <p style={{ fontSize: "clamp(15px, 2vw, 17px)", fontWeight: 300, color: "rgba(255,255,255,0.7)", lineHeight: 1.72, marginBottom: 32, maxWidth: 600, margin: "0 auto 32px" }}>
           The first diagnostic platform to measure your Na:K ratio against your actual biology — integrating with Apple Health, activity data, and physician-validated benchmarks to deliver a personalized mineral protocol. Not a quiz. A clinical-grade assessment in your pocket.
         </p>
+
+        <a href="/assessment" style={{ display: "inline-block", background: C.peach, color: C.navy, fontSize: 14, fontWeight: 600, padding: "16px 36px", textDecoration: "none", borderRadius: 4, fontFamily: F.base, marginBottom: 32 }}>
+          Take The Precision Mineral Assessment →
+        </a>
 
         {submitted ? (
           <p style={{ fontSize: 15, fontWeight: 500, color: "rgba(255,255,255,0.85)" }}>
