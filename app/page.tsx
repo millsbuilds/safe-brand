@@ -472,7 +472,7 @@ function Science() {
               margin: 0,
             }}
           >
-            In Severo Ochoa&apos;s laboratory, Dr. Gardner spent one summer discovering nearly 40% of the genetic code. That same precision defines every SafeBrand™ formulation.
+            In Nobel Laureate Severo Ochoa&apos;s laboratory at NYU School of Medicine, Dr. Gardner led the discovery that AAA codes for lysine — one of the foundational assignments in the genetic code, cited in Marshall Nirenberg&apos;s 1968 Nobel Prize lecture. The finding resolved a paradox that had blocked leading laboratories for two years, and prompted a congratulatory letter from Francis Crick to the Ochoa laboratory. He would go on to author foundational sporulation research in Nobel Laureate Arthur Kornberg&apos;s Stanford laboratory as well. That same precision defines every SafeBrand™ formulation.
           </p>
         </div>
       </div>
