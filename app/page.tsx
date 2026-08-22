@@ -687,7 +687,7 @@ function Footer() {
     { label: "safesalt.health", href: "https://safesalt.health" },
     { label: "safesupplements.health", href: "https://safesupplements.health" },
     { label: "safehydrate.health", href: "https://safehydrate.health" },
-    { label: "healthsciencenutritionals.health", href: "https://healthsciencenutritionals.health" },
+    { label: "safebrand.health", href: "https://safebrand.health" },
   ];
 
   return (
