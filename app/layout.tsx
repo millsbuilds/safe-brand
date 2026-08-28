@@ -5,7 +5,7 @@ import "./globals.css";
 export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
   const host = headersList.get("host") ?? "";
-  const isHSN = host.startsWith("healthsciencenutritionals");
+  const isHSN = host.includes("healthsciencenutritionals");
 
   return {
     title: isHSN
