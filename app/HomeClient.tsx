@@ -746,8 +746,8 @@ function Footer({ isHSN }: { isHSN: boolean }) {
         <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: 24 }}>
           <p style={{ fontSize: 12, fontWeight: 300, color: "rgba(255,255,255,0.38)", lineHeight: 1.75, maxWidth: 800 }}>
             {isHSN
-              ? "Health Science Nutritionals, PBC is a physician-founded public benefit corporation. SafeBrand™, SafeSalt™, SafeSupplements™, and SafeHydrate™ are trademarks of Health Science Nutritionals, PBC. © 2026 Health Science Nutritionals, PBC."
-              : "SafeBrand™ is a consumer brand of Health Science Nutritionals, PBC. SafeSalt™, SafeSupplements™, and SafeHydrate™ are trademarks of Health Science Nutritionals, PBC. © 2026 Health Science Nutritionals, PBC."}
+              ? "Health Science Nutritionals, PBC is a physician-founded public benefit corporation. SafeSalt™ is a trademark of Health Science Nutritionals, PBC (U.S. trademark application pending). SafeBrand, SafeSupplements, and SafeHydrate are additional brand names of Health Science Nutritionals, PBC. © 2026 Health Science Nutritionals, PBC."
+              : "SafeBrand™ is a consumer brand of Health Science Nutritionals, PBC. SafeSalt™ is a trademark of Health Science Nutritionals, PBC (U.S. trademark application pending). SafeSupplements and SafeHydrate are additional brand names of Health Science Nutritionals, PBC. © 2026 Health Science Nutritionals, PBC."}
           </p>
         </div>
       </div>
