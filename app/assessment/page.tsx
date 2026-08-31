@@ -150,22 +150,21 @@ function getRecommendations(answers: Record<string, string>) {
       name: "SafeSalt\u2122",
       reason: liteSalt?.includes("KCl")
         ? "You\u2019re currently using a KCl-based substitute. SafeSalt\u2122 gives you 50% less sodium without potassium chloride \u2014 so you control your K sources."
-        : "SafeSalt\u2122 replaces your daily salt with a precision-formulated electrolyte seasoning \u2014 50% less sodium, full mineral stack, zero KCl.",
+        : "SafeSalt\u2122 replaces your daily salt with a precision-formulated electrolyte seasoning \u2014 50% less sodium, zero potassium chloride.",
       href: "https://safesalt.health",
+      comingSoon: false,
     },
     {
-      name: "SafeSupplements\u2122",
-      reason: goal?.includes("Longevity")
-        ? "Your longevity focus pairs well with targeted mineral supplementation. SafeSupplements\u2122 fills the gaps your diet can\u2019t."
-        : "SafeSupplements\u2122 delivers the micronutrients most diets miss \u2014 formulated to complement your Na:K protocol.",
-      href: "https://safesupplements.health",
+      name: "SafeSupplements",
+      reason: "Targeted mineral supplementation formulated to complement your Na:K protocol.",
+      href: "",
+      comingSoon: true,
     },
     {
-      name: "SafeHydrate\u2122",
-      reason: exercise?.includes("High")
-        ? "With your training volume, hydration is critical. SafeHydrate\u2122 provides electrolyte balance without the sugar or artificial ingredients."
-        : "SafeHydrate\u2122 delivers clean electrolyte hydration calibrated to your activity level \u2014 no sugar, no junk.",
-      href: "https://safehydrate.health",
+      name: "SafeHydrate",
+      reason: "Clean electrolyte hydration calibrated to your activity level.",
+      href: "",
+      comingSoon: true,
     },
   ];
 }
@@ -250,12 +249,19 @@ export default function AssessmentPage() {
           </p>
           <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 16, marginBottom: 64 }}>
             {recs.map((r) => (
-              <div key={r.name} style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 8, padding: 24 }}>
-                <h3 style={{ color: C.white, fontSize: 18, fontWeight: 700, marginBottom: 8 }}>{r.name}</h3>
-                <p style={{ color: "rgba(255,255,255,0.7)", fontSize: 14, lineHeight: 1.65, fontWeight: 300, marginBottom: 16 }}>{r.reason}</p>
-                <a href={r.href} target="_blank" rel="noopener noreferrer" style={{ color: C.peach, fontSize: 14, fontWeight: 600, textDecoration: "none" }}>
-                  Learn More \u2192
-                </a>
+              <div key={r.name} style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 8, padding: 24, opacity: r.comingSoon ? 0.45 : 1 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 8 }}>
+                  <h3 style={{ color: C.white, fontSize: 18, fontWeight: 700, margin: 0 }}>{r.name}</h3>
+                  {r.comingSoon && (
+                    <span style={{ fontSize: 11, fontWeight: 600, color: C.peach, letterSpacing: "0.08em", textTransform: "uppercase" }}>Coming Soon</span>
+                  )}
+                </div>
+                <p style={{ color: "rgba(255,255,255,0.7)", fontSize: 14, lineHeight: 1.65, fontWeight: 300, marginBottom: r.comingSoon ? 0 : 16 }}>{r.reason}</p>
+                {!r.comingSoon && (
+                  <a href={r.href} target="_blank" rel="noopener noreferrer" style={{ color: C.peach, fontSize: 14, fontWeight: 600, textDecoration: "none" }}>
+                    Learn More \u2192
+                  </a>
+                )}
               </div>
             ))}
           </div>
