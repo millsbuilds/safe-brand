@@ -307,19 +307,20 @@ function ProductCard({
     >
       <div
         style={{
-          height: 160,
+          height: 300,
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           marginBottom: 4,
-          background: "transparent",
+          background: C.navy,
+          borderRadius: 3,
         }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={imagePath}
           alt={name}
-          style={{ height: "100%", width: "100%", objectFit: "contain", mixBlendMode: "multiply" }}
+          style={{ height: "100%", width: "100%", objectFit: "contain" }}
         />
       </div>
       <h3
