@@ -247,9 +247,12 @@ function Hero({ isHSN }: { isHSN: boolean }) {
             : "Health Science Nutritionals, PBC develops physician-formulated products for patients, practitioners, and health systems who won\u2019t accept less than clinical-grade."}
         </p>
 
-        <button
-          onClick={() => scrollTo("science")}
+        <a
+          href="https://safesalt.health"
+          target="_blank"
+          rel="noopener noreferrer"
           style={{
+            display: "inline-block",
             background: C.navy,
             color: C.white,
             border: "none",
@@ -259,14 +262,14 @@ function Hero({ isHSN }: { isHSN: boolean }) {
             fontWeight: 600,
             letterSpacing: "0.03em",
             fontFamily: F.base,
-            cursor: "pointer",
+            textDecoration: "none",
             transition: "opacity 0.15s",
           }}
           onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.85")}
           onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
         >
-          Explore the Science →
-        </button>
+          Explore SafeSalt →
+        </a>
       </div>
     </section>
   );
@@ -389,19 +392,19 @@ function Products() {
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: 28 }}>
           <ProductCard
             name="SafeSalt™"
-            description="Precision electrolyte seasoning engineered around your Na:K ratio. Not table salt. Not a supplement. A new category."
+            description="The first salt engineered to protect, not just season. Tastes exactly like salt in blind taste tests — with zero added potassium, unlike typical substitutes that can pose real risk for those with kidney disease. Patent-pending formulation. Not a substitute. A new leader."
             href="safesalt.health"
             imagePath="/images/hand-salt.png"
           />
           <ProductCard
             name="SafeSupplements™"
-            description="Targeted mineral protocols formulated by a physician. Each product built around a clinical insight, not a marketing brief."
+            description="Formulated by a physician, not a trend. Each protocol traces back to a specific clinical insight — not a supplement-aisle template stacked with unproven ingredients. Every SafeSupplements formula answers a documented physiological need. Not a stack. A protocol."
             href="safesupplements.health"
             imagePath="/images/hand-supplement.png"
           />
           <ProductCard
             name="SafeHydrate™"
-            description="Performance hydration built on the science of sodium and potassium balance. For athletes and the rigorously health-conscious."
+            description="Hydration built on the same science behind SafeSalt. Engineered around your actual sodium-potassium balance — not sugar, not artificial flavoring, not marketing claims dressed up as electrolytes. For athletes and the rigorously health-conscious. Not a sports drink. A recalibration."
             href="safehydrate.health"
             imagePath="/images/hand-hydrate.png"
           />
